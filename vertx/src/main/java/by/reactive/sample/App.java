@@ -7,7 +7,7 @@ import io.vertx.reactivex.core.Vertx;
 
 public class App {
 
-    public static final String PROCESSING_ADDRESS = "worker";
+    static final String PROCESSING_ADDRESS = "worker";
 
     private static final Logger log = LoggerFactory.getLogger("App.java");
 

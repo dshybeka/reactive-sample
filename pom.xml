@@ -11,6 +11,7 @@
         <module>webflux-annotations</module>
         <module>core</module>
         <module>tests</module>
+        <module>vertx-codegen</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -62,6 +63,22 @@
                 <artifactId>vertx-rx-java2</artifactId>
                 <version>${vertx.version}</version>
             </dependency>
+
+            <!-- codegen -->
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-service-proxy</artifactId>
+                <classifier>processor</classifier>
+                <version>${vertx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-codegen</artifactId>
+                <scope>provided</scope>
+                <version>${vertx.version}</version>
+            </dependency>
+            <!-- END: codegen -->
             <!-- END: Vertx -->
 
             <!-- Webflux -->
