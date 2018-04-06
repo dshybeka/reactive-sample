@@ -30,7 +30,7 @@ class TestScenario extends Simulation {
         scn.inject(
 //            https://gatling.io/docs/2.3/general/simulation_setup/?highlight=constant
 //            atOnceUsers(1)
-            constantUsersPerSec(20) during (15 seconds)
+            constantUsersPerSec(100) during (120 seconds)
         )
     ).protocols(httpConf)
 
