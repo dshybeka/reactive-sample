@@ -1,0 +1,13 @@
+/core/*.iml
+/core/target/classes/by/reactive/sample/model/*.class
+/core/target/maven-status/maven-compiler-plugin/compile/default-compile/*.lst
+/tests/target/classes/by/reactive/sample/performance/*.class
+/core/target/test-classes/by/reactive/sample/*.class
+/core/target
+/tests/target
+/vertx/target
+/webflux-annotations/target
+/tests/*.iml
+/vertx/*.iml
+/webflux-annotations/*.iml
+/*.iml
