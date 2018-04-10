@@ -12,6 +12,7 @@
         <module>core</module>
         <module>tests</module>
         <module>vertx-codegen</module>
+        <module>vertx-cluster</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -76,6 +77,12 @@
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-codegen</artifactId>
                 <scope>provided</scope>
+                <version>${vertx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-hazelcast</artifactId>
                 <version>${vertx.version}</version>
             </dependency>
             <!-- END: codegen -->
