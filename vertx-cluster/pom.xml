@@ -9,9 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>vertx-cluster</artifactId>
+    <artifactId>vertxcluster</artifactId>
+    <packaging>jar</packaging>
 
-    <name>vertx-cluster</name>
+    <name>vertxcluster</name>
 
     <properties>
 
@@ -64,6 +65,12 @@
 
         <dependency>
             <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>3.9.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-kubernetes</artifactId>
             <version>1.1.0</version>
         </dependency>
@@ -75,6 +82,21 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <!-- END: Utils -->
+
+        <!-- Logs-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- END: Logs-->
 
     </dependencies>
 
@@ -94,9 +116,20 @@
                             <transformers>
                                 <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>by.reactive.sample.ClusterApp</mainClass>
+                                    <manifestEntries>
+                                        <Main-Class>io.vertx.core.Launcher</Main-Class>
+                                        <Main-Verticle>by.reactive.sample.ClusterMainVerticle</Main-Verticle>
+                                    </manifestEntries>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>
                                 </transformer>
                             </transformers>
+                            <artifactSet>
+                            </artifactSet>
+                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+                            </outputFile>
                         </configuration>
                     </execution>
                 </executions>

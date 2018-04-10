@@ -1,4 +1,4 @@
-@ModuleGen(name = "hero-service", groupPackage = "by.reactive.sample.service")
+@ModuleGen(name = "chat-service", groupPackage = "by.reactive.sample.service")
 
 package by.reactive.sample.service;
 
