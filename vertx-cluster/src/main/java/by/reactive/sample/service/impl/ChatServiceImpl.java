@@ -10,8 +10,11 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.reactivex.core.Vertx;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Map;
@@ -31,15 +34,7 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public ChatService getAll(Handler<AsyncResult<JsonArray>> handler) {
 
-        ArrayList<Enumeration<NetworkInterface>> enumerations = Lists.newArrayList();
-        try {
-            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-            enumerations = Lists.newArrayList(networkInterfaces);
-        } catch (SocketException e) {
-
-            log.error("Network interface error ", e);
-        }
-        log.info("Get all called from " + enumerations);
+        logCurrentIp("get all");
 
         vertx.sharedData().rxGetClusterWideMap(STORAGE_NAME)
              .subscribe(ok -> {
@@ -74,15 +69,7 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public ChatService add(String data, Handler<AsyncResult<JsonObject>> handler) {
 
-        ArrayList<Enumeration<NetworkInterface>> enumerations = Lists.newArrayList();
-        try {
-            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-            enumerations = Lists.newArrayList(networkInterfaces);
-        } catch (SocketException e) {
-
-            log.error("Network interface error ", e);
-        }
-        log.info("Add called from " + enumerations);
+        logCurrentIp("add");
 
         vertx.sharedData().rxGetClusterWideMap(STORAGE_NAME)
              .flatMap(storage -> storage.rxPutIfAbsent(data, System.currentTimeMillis()))
@@ -98,5 +85,20 @@ public class ChatServiceImpl implements ChatService {
              });
 
         return this;
+    }
+
+    private void logCurrentIp(String action) {
+
+        try(final DatagramSocket socket = new DatagramSocket()){
+
+            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+            String hostAddress = socket.getLocalAddress().getHostAddress();
+
+            log.info("Action " + action + " handled on " + hostAddress);
+
+        } catch (SocketException | UnknownHostException e) {
+
+            log.error("Error getting ip address ", e);
+        }
     }
 }
