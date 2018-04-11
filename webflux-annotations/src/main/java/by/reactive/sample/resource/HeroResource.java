@@ -26,11 +26,13 @@ public class HeroResource {
     }
 
     @PostMapping("/")
-    public Mono<String> post(@RequestBody String data) {
+    public Mono<String> post(@RequestBody Mono<String> data) {
 
-        return Mono.just(data)
+        return data
                    .subscribeOn(Schedulers.fromExecutor(executorService))
                    .map(value -> {
+
+                       log.info("Handle post");
 
                        Optional<Hero> maybeHero = heroConverter.fromJson(value);
 
