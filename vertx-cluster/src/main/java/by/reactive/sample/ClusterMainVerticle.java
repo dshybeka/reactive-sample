@@ -8,15 +8,16 @@ import org.slf4j.LoggerFactory;
 
 public class ClusterMainVerticle extends AbstractVerticle {
 
+    private static final Logger log = LoggerFactory.getLogger(ClusterMainVerticle.class);
+
     @Override
     public void start(Future<Void> startFuture) throws Exception {
-
-        Logger log = LoggerFactory.getLogger(LoggerFactory.class);
 
         vertx.rxDeployVerticle(WorkerVerticle.class.getName(), new DeploymentOptions().setWorker(true))
              .subscribe(ok -> {
 
                  vertx.deployVerticle(HttpVerticle.class.getName());
+                 vertx.deployVerticle(HandleExpiredKeysVerticle.class.getName());
 
                  log.info("Application started");
              }, error -> {

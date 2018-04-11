@@ -1,7 +1,9 @@
 package by.reactive.sample.service.impl;
 
+
+import static by.reactive.sample.utils.Utils.getAddress;
+
 import by.reactive.sample.service.ChatService;
-import com.google.common.collect.Lists;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -10,13 +12,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.reactivex.core.Vertx;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Map;
 
 public class ChatServiceImpl implements ChatService {
@@ -72,7 +67,7 @@ public class ChatServiceImpl implements ChatService {
         logCurrentIp("add");
 
         vertx.sharedData().rxGetClusterWideMap(STORAGE_NAME)
-             .flatMap(storage -> storage.rxPutIfAbsent(data, System.currentTimeMillis()))
+             .flatMap(storage -> storage.rxPutIfAbsent(data + "_" + getAddress(), System.currentTimeMillis()))
              .subscribe(ok -> {
 
                  handler.handle(Future.succeededFuture(new JsonObject().put("added", true)));
@@ -89,16 +84,8 @@ public class ChatServiceImpl implements ChatService {
 
     private void logCurrentIp(String action) {
 
-        try(final DatagramSocket socket = new DatagramSocket()){
+        String address = getAddress();
 
-            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-            String hostAddress = socket.getLocalAddress().getHostAddress();
-
-            log.info("Action " + action + " handled on " + hostAddress);
-
-        } catch (SocketException | UnknownHostException e) {
-
-            log.error("Error getting ip address ", e);
-        }
+        log.info("Action " + action + " handled on " + address);
     }
 }

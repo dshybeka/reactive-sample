@@ -7,7 +7,9 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.reactivex.core.AbstractVerticle;
 import io.vertx.reactivex.ext.web.Router;
 import io.vertx.reactivex.ext.web.handler.BodyHandler;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class HttpVerticle extends AbstractVerticle {
 
     @Override
@@ -22,13 +24,13 @@ public class HttpVerticle extends AbstractVerticle {
             JsonObject body = r.getBodyAsJson();
             chatService.rxAdd(body.getString("value"))
                        .subscribe(data -> r.response().end(data.toString()),
-                                  error -> r.fail(error));
+                           error -> r.fail(error));
         });
         router.get("/").handler(r -> {
 
             chatService.rxGetAll()
                        .subscribe(data -> r.response().end(data.toString()),
-                                  error -> r.fail(error));
+                           error -> r.fail(error));
         });
 
         vertx.createHttpServer()

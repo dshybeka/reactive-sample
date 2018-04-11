@@ -64,6 +64,13 @@
         </dependency>
         <!-- END: Vertx -->
 
+        <!-- Redis -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <!-- END: Redis -->
+
         <!-- Cluster -->
         <dependency>
             <groupId>com.hazelcast</groupId>
@@ -97,6 +104,13 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <!-- END: Logs-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
