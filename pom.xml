@@ -13,7 +13,7 @@
         <module>tests</module>
         <module>vertx-codegen</module>
         <module>vertx-cluster</module>
-        <module>events-listener</module>
+        <module>events-dispatcher</module>
     </modules>
     <packaging>pom</packaging>
 

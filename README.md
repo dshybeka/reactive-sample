@@ -21,3 +21,13 @@ Vertx and spring5 webflux (annotations and functional based approaches).
 5. minikube service vertx-cluster --url - to get service url
 6. kubectl set image deployment/vertx-cluster vertx-cluster=vertx-cluster:v3 - update image
 7. open dashboard and scale
+
+
+## Redis expiration keys handling with vertx-cluster
+1. run vertx-cluster in minikube
+2. run redis with enabled Ex (https://redis.io/topics/notifications) in minikube
+3. update Dockerfile for events-dispatcher with redis host and port(-Dhost, -Dport)
+4. run events-dispatcher in minikube
+5. add records with expirations to redis & monitor logs
+
+[Redis expiration event handling](images/expiration_evt_handling.png)

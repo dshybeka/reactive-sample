@@ -8,6 +8,8 @@ import io.vertx.reactivex.core.Vertx;
 
 public class ClusterApp {
 
+    public static final String CLUSTER_PROCESSING_ADDRESS = "cluster-worker";
+
     public static void main(String[] args) {
 
         setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());

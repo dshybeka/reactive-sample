@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>events-listener</artifactId>
+    <artifactId>events-dispatcher</artifactId>
 
-    <name>events-listener</name>
+    <name>events-dispatcher</name>
 
     <properties>
 
