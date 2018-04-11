@@ -30,4 +30,4 @@ Vertx and spring5 webflux (annotations and functional based approaches).
 4. run events-dispatcher in minikube
 5. add records with expirations to redis & monitor logs
 
-[Redis expiration event handling](images/expiration_evt_handling.png)
+![Redis expiration event handling](images/expiration_evt_handling.png)
