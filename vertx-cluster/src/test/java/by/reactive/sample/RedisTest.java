@@ -5,8 +5,10 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.reactive.RedisPubSubReactiveCommands;
+import org.junit.Ignore;
 import reactor.core.publisher.Mono;
 
+@Ignore
 public class RedisTest {
 
     @org.junit.Test

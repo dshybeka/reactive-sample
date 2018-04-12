@@ -8,7 +8,7 @@ import io.vertx.reactivex.core.AbstractVerticle;
 
 public class MainVerticle extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger("MainvVerticle.java");
+    private static final Logger log = LoggerFactory.getLogger(MainVerticle.class);
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {

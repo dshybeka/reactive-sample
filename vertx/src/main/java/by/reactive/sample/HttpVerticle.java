@@ -1,6 +1,5 @@
 package by.reactive.sample;
 
-import by.reactive.sample.converter.HeroConverter;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
@@ -10,12 +9,6 @@ import io.vertx.reactivex.ext.web.Router;
 import io.vertx.reactivex.ext.web.handler.BodyHandler;
 
 public class HttpVerticle extends AbstractVerticle {
-
-    private final HeroConverter heroConverter;
-
-    public HttpVerticle() {
-        this.heroConverter = new HeroConverter();
-    }
 
     @Override
     public void start(Future<Void> startFuture) {

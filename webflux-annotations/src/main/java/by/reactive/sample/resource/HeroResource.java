@@ -7,8 +7,10 @@ import java.util.concurrent.ExecutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -29,25 +31,25 @@ public class HeroResource {
     public Mono<String> post(@RequestBody Mono<String> data) {
 
         return data
-                   .subscribeOn(Schedulers.fromExecutor(executorService))
-                   .map(value -> {
+            .publishOn(Schedulers.fromExecutor(executorService))
+            .map(value -> {
 
-                       log.info("Handle post");
+                log.info("Handle post " + Thread.currentThread().getName());
 
-                       Optional<Hero> maybeHero = heroConverter.fromJson(value);
+                Optional<Hero> maybeHero = heroConverter.fromJson(value);
 
-                       if (!maybeHero.isPresent()) {
-                           throw new RuntimeException();
-                       }
+                if (!maybeHero.isPresent()) {
+                    throw new RuntimeException();
+                }
 
-                       Optional<String> maybeConvertedBack = heroConverter.toJson(maybeHero.get());
+                Optional<String> maybeConvertedBack = heroConverter.toJson(maybeHero.get());
 
-                       if (!maybeConvertedBack.isPresent()) {
-                           throw new RuntimeException();
-                       }
+                if (!maybeConvertedBack.isPresent()) {
+                    throw new RuntimeException();
+                }
 
-                       return maybeConvertedBack.get();
-                   });
+                return maybeConvertedBack.get();
+            });
     }
 
     @GetMapping("/")
