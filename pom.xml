@@ -165,12 +165,21 @@
             </dependency>
             <!-- END: Redis -->
 
+            <!-- Tests -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-unit</artifactId>
+                <scope>test</scope>
+                <version>${vertx.version}</version>
+            </dependency>
+            <!-- END: Tests -->
         </dependencies>
     </dependencyManagement>
 
