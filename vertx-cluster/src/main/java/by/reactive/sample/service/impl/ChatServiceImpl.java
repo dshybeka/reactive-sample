@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class ChatServiceImpl implements ChatService {
 
-    private static final Logger log = LoggerFactory.getLogger("ChatServiceImpl");
+    private static final Logger log = LoggerFactory.getLogger(ChatServiceImpl.class);
 
     private static final String STORAGE_NAME = "chat";
 

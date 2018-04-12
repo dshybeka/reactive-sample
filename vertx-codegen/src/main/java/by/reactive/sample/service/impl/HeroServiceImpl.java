@@ -20,6 +20,8 @@ public class HeroServiceImpl implements HeroService {
     @Override
     public HeroService handleHero(String data, Handler<AsyncResult<String>> handler) {
 
+        System.out.println("Worker handler called with thread " + Thread.currentThread().getName());
+
         Optional<Hero> maybeHero = heroConverter.fromJson(data);
 
         if (!maybeHero.isPresent()) {

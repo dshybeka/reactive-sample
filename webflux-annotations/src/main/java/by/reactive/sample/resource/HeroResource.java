@@ -7,10 +7,8 @@ import java.util.concurrent.ExecutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -29,6 +27,8 @@ public class HeroResource {
 
     @PostMapping("/")
     public Mono<String> post(@RequestBody Mono<String> data) {
+
+        log.info("Start handling post");
 
         return data
             .publishOn(Schedulers.fromExecutor(executorService))

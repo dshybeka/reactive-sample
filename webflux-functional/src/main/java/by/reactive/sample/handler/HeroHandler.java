@@ -26,9 +26,13 @@ public class HeroHandler {
 
     public Mono<ServerResponse> handle(ServerRequest request) {
 
+        log.info("Start handling post");
+
         Mono<String> result = request.bodyToMono(String.class)
-                                     .subscribeOn(Schedulers.fromExecutor(executorService))
+                                     .publishOn(Schedulers.fromExecutor(executorService))
                                      .map(value -> {
+
+                                         log.info("Handle post " + Thread.currentThread().getName());
 
                                          Optional<Hero> hero = heroConverter.fromJson(value);
 

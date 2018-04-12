@@ -18,6 +18,8 @@ public class HttpVerticle extends AbstractVerticle {
         router.route().handler(BodyHandler.create());
         router.post("/").handler(r -> {
 
+            System.out.println("Post handler called with thread " + Thread.currentThread().getName());
+
             String bodyAsString = r.getBodyAsString();
 
             heroService.rxHandleHero(bodyAsString)

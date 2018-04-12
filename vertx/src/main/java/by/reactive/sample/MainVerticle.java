@@ -15,7 +15,7 @@ public class MainVerticle extends AbstractVerticle {
 
         log.info("Starting application");
 
-        vertx.rxDeployVerticle(WorkerVerticle.class.getName(), new DeploymentOptions().setWorker(true))
+        vertx.rxDeployVerticle(WorkerVerticle.class.getName(), new DeploymentOptions().setWorker(true).setInstances(2))
              .subscribe(ok -> {
 
                  vertx.deployVerticle(HttpVerticle.class.getName());
