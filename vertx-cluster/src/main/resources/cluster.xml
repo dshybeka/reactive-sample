@@ -9,26 +9,26 @@ http://www.hazelcast.com/schema/config/hazelcast-config-3.8.xsd"
         <property name="hazelcast.discovery.enabled">true</property>
     </properties>
 
-    <network>
-        <join>
-            <!-- deactivate normal discovery -->
-            <multicast enabled="false"/>
-            <tcp-ip enabled="false"/>
+    <!--<network>-->
+        <!--<join>-->
+            <!--&lt;!&ndash; deactivate normal discovery &ndash;&gt;-->
+            <!--<multicast enabled="false"/>-->
+            <!--<tcp-ip enabled="false"/>-->
 
-            <!-- activate the Kubernetes plugin -->
-            <discovery-strategies>
-                <discovery-strategy enabled="true"
-                                    class="com.hazelcast.kubernetes.HazelcastKubernetesDiscoveryStrategy">
+            <!--&lt;!&ndash; activate the Kubernetes plugin &ndash;&gt;-->
+            <!--<discovery-strategies>-->
+                <!--<discovery-strategy enabled="true"-->
+                                    <!--class="com.hazelcast.kubernetes.HazelcastKubernetesDiscoveryStrategy">-->
 
-                    <properties>
-                        <!-- configure discovery service API lookup -->
-                        <property name="service-name">vertx-cluster</property>
-                        <property name="service-label-name">run</property>
-                        <property name="service-label-value">vertx-cluster</property>
-                        <property name="namespace">default</property>
-                    </properties>
-                </discovery-strategy>
-            </discovery-strategies>
-        </join>
-    </network>
+                    <!--<properties>-->
+                        <!--&lt;!&ndash; configure discovery service API lookup &ndash;&gt;-->
+                        <!--<property name="service-name">vertx-cluster</property>-->
+                        <!--<property name="service-label-name">run</property>-->
+                        <!--<property name="service-label-value">vertx-cluster</property>-->
+                        <!--<property name="namespace">default</property>-->
+                    <!--</properties>-->
+                <!--</discovery-strategy>-->
+            <!--</discovery-strategies>-->
+        <!--</join>-->
+    <!--</network>-->
 </hazelcast>
