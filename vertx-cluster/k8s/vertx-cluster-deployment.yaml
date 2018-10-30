@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: vertx-cluster
-  replicas: 2
+  replicas: 0
   template:
     metadata:
       labels:
