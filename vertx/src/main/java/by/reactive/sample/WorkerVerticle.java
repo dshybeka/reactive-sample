@@ -20,6 +20,12 @@ public class WorkerVerticle extends AbstractVerticle {
 
         vertx.eventBus().consumer(App.PROCESSING_ADDRESS, (Handler<Message<String>>) event -> {
 
+//            try {
+//                Thread.currentThread().sleep(5_000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
             System.out.println("Worker handler called with thread " + Thread.currentThread().getName());
 
             String bodyAsString = event.body();

@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Initializer {
 
-    private static AppConfig appConfig;
+    private volatile static AppConfig appConfig;
 
     /**
      * Create app config singleton instance.

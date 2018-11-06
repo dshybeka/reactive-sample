@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vertxcluster
+  name: vertx-cluster
   labels:
-    app: vertx-cluster
+    run: vertx-cluster
 spec:
   type: LoadBalancer
   ports:
