@@ -38,7 +38,13 @@ public class HeroResource {
 
                 Optional<Hero> maybeHero = heroConverter.fromJson(value);
 
-                if (!maybeHero.isPresent()) {
+//              try {
+//                Thread.currentThread().sleep(5_000L);
+//              } catch (InterruptedException e) {
+//                e.printStackTrace();
+//              }
+
+              if (!maybeHero.isPresent()) {
                     throw new RuntimeException();
                 }
 

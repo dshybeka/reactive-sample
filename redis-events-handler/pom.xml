@@ -10,10 +10,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>vertxcluster</artifactId>
+  <artifactId>redis-events-handler</artifactId>
   <packaging>jar</packaging>
 
-  <name>vertxcluster</name>
+  <name>redis-events-handler</name>
 
   <properties>
 
@@ -140,7 +140,7 @@
                   implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
                     <Main-Class>io.vertx.core.Launcher</Main-Class>
-                    <Main-Verticle>by.reactive.sample.ClusterMainVerticle</Main-Verticle>
+                    <Main-Verticle>by.reactive.sample.RedisClusterExpiredKeysHandlerVerticle</Main-Verticle>
                   </manifestEntries>
                 </transformer>
                 <transformer
@@ -160,35 +160,6 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <useIncrementalCompilation>false</useIncrementalCompilation>
-          <!-- Codegen -->
-          <annotationProcessors>
-            <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
-          </annotationProcessors>
-          <generatedSourcesDirectory>${project.basedir}/src/main/generated
-          </generatedSourcesDirectory>
-          <compilerArgs>
-            <arg>-AoutputDirectory=${project.basedir}/src/main</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>${project.basedir}/src/main/generated</directory>
-            </fileset>
-          </filesets>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>

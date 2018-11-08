@@ -1,32 +1,28 @@
-package by.reactive.sample;
+package by.reactive.sample.raw;
+
+import static by.reactive.sample.raw.NativeApp.WORKER_ADDRESS;
 
 import by.reactive.sample.converter.HeroConverter;
 import by.reactive.sample.model.Hero;
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
-import io.vertx.reactivex.core.AbstractVerticle;
-import io.vertx.reactivex.core.eventbus.Message;
+import io.vertx.core.eventbus.Message;
 import java.util.Optional;
 
-public class WorkerVerticle extends AbstractVerticle {
+public class NativeWorkerVerticle extends AbstractVerticle {
 
     private final HeroConverter heroConverter;
 
-    public WorkerVerticle() {
+    public NativeWorkerVerticle() {
         this.heroConverter = new HeroConverter();
     }
 
     @Override
     public void start() {
 
-        vertx.eventBus().consumer(App.PROCESSING_ADDRESS, (Handler<Message<String>>) event -> {
+        vertx.eventBus().consumer(WORKER_ADDRESS, (Handler<Message<String>>) event -> {
 
-//            try {
-//                Thread.currentThread().sleep(5_000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-
-            System.out.println("Worker handler called with thread " + Thread.currentThread().getName());
+            System.out.println("Native worker handler called with thread " + Thread.currentThread().getName());
 
             String bodyAsString = event.body();
 

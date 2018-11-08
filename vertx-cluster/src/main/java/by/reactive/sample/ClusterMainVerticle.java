@@ -8,21 +8,21 @@ import org.slf4j.LoggerFactory;
 
 public class ClusterMainVerticle extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(ClusterMainVerticle.class);
+  private static final Logger log = LoggerFactory.getLogger(ClusterMainVerticle.class);
 
-    @Override
-    public void start(Future<Void> startFuture) throws Exception {
+  @Override
+  public void start(Future<Void> startFuture) throws Exception {
 
-        vertx.rxDeployVerticle(WorkerVerticle.class.getName(), new DeploymentOptions().setWorker(true))
-             .subscribe(ok -> {
+    vertx
+        .rxDeployVerticle(WorkerVerticle.class.getName(), new DeploymentOptions().setWorker(true))
+        .subscribe(
+            ok -> {
+              vertx.deployVerticle(HttpVerticle.class.getName());
 
-                 vertx.deployVerticle(HttpVerticle.class.getName());
-                 vertx.deployVerticle(HandleExpiredKeysVerticle.class.getName());
-
-                 log.info("Application started");
-             }, error -> {
-
-                 log.error("Cannot start application ", error);
-             });
-    }
+              log.info("Application started");
+            },
+            error -> {
+              log.error("Cannot start application ", error);
+            });
+  }
 }

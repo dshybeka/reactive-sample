@@ -14,6 +14,9 @@
         <module>vertx-codegen</module>
         <module>vertx-cluster</module>
         <module>events-dispatcher</module>
+        <module>native</module>
+      <module>redis-events-handler</module>
+      <module>demo-app</module>
     </modules>
     <packaging>pom</packaging>
 

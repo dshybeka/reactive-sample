@@ -10,6 +10,9 @@ public class ClusterApp {
 
     public static final String CLUSTER_PROCESSING_ADDRESS = "cluster-worker";
 
+    static final String PROCESSED_DATA_ADDRESS = "app.chat.data.processed";
+    static final String INPUT_DATA_ADDRESS = "app.chat.data.input";
+
     public static void main(String[] args) {
 
         setProperty(LOGGER_DELEGATE_FACTORY_CLASS_NAME, SLF4JLogDelegateFactory.class.getName());
