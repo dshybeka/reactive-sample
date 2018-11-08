@@ -1,4 +1,8 @@
-Steps for running in GCP (assuming project with billing info configured)
+# Simple chat application
+
+The idea is to see how eventBus is share among multiple pods and js socket
+
+## Steps for running in GCP (assuming project with billing info configured)
 
 1. Create k8s cluster
 
