@@ -8,7 +8,7 @@ public class CodegenApp {
 
     public static final String CODEGEN_PROCESSING_ADDRESS = "codegen-worker";
 
-    private static final Logger log = LoggerFactory.getLogger("App.java");
+    private static final Logger log = LoggerFactory.getLogger(CodegenApp.class);
 
     public static void main(String[] args) {
 
